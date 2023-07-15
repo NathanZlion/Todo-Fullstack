@@ -8,8 +8,8 @@ import {
   incrementAsync,
   incrementIfOdd,
   selectCount,
-} from "./counterSlice"
-import styles from "./Counter.module.css"
+} from "./counterSlice";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export function Counter() {
   const count = useAppSelector(selectCount)
@@ -20,44 +20,44 @@ export function Counter() {
 
   return (
     <div>
-      <div className={styles.row}>
+      <div className="row">
         <button
-          className={styles.button}
+          className="btn btn-danger btn-lg rounded"
           aria-label="Decrement value"
           onClick={() => dispatch(decrement())}
         >
           -
         </button>
-        <span className={styles.value}>{count}</span>
+        <span >{count}</span>
         <button
-          className={styles.button}
+          className="btn btn-success btn-lg rounded"
           aria-label="Increment value"
           onClick={() => dispatch(increment())}
         >
           +
         </button>
       </div>
-      <div className={styles.row}>
+      <div className="border row">
         <input
-          className={styles.textbox}
+          className="col-1"
           aria-label="Set increment amount"
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(e.target.value)}
         />
         <button
-          className={styles.button}
+          className="col-lg-4 col-md-3 col-sm-2"
           onClick={() => dispatch(incrementByAmount(incrementValue))}
         >
           Add Amount
         </button>
         <button
-          className={styles.asyncButton}
+          className="col-lg-4 col-md-3 col-sm-2"
           onClick={() => dispatch(incrementAsync(incrementValue))}
         >
           Add Async
         </button>
         <button
-          className={styles.button}
+          className="col-3"
           onClick={() => dispatch(incrementIfOdd(incrementValue))}
         >
           Add If Odd
