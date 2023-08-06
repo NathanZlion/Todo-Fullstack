@@ -28,8 +28,8 @@ export const incrementAsync = createAsyncThunk(
 
 export const counterSlice = createSlice({
   name: "counter",
-  initialState,
   // The `reducers` field lets us define reducers and generate associated actions
+  initialState,
   reducers: {
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
