@@ -1,6 +1,11 @@
 # Todo Project - Learning Exercise
 
+<img src="./logo.svg" alt="TODO" width="60" style="float: left; margin-right: 30px; border-radius: 50%"/>
+
 Hey there! Welcome to my humble Todo project README. I'm currently working on this project as a way to practice and learn. It's a fun and exciting journey for me, and I'd love to share some details with you.
+
+<div style="clear:both"></div>
+<!-- This is to make a line break thing for the float image above. -->
 
 ## Folder Structure
 
@@ -21,8 +26,7 @@ The main purpose of this project is for me to learn and gain practical experienc
 - Diving into mobile app development using Flutter and Dart.
 - Making everything work together by implementing API integration between the frontend and backend components.
 
-
-***This project is all about learning.***
+**_This project is all about learning._**
 
 ## Getting Started
 

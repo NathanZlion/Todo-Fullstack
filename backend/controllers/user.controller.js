@@ -143,7 +143,6 @@ export class userControllers {
             await user.save();
             res.status(200).json({ user: { userName: user.userName, email: user.email } });
         } catch (error) {
-            console.log(error); z
             res.status(500).json({ message: "Something went wrong while updating user." });
         }
     }
