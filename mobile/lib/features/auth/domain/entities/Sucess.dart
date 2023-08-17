@@ -1,10 +1,10 @@
 import 'package:mobile/features/auth/domain/entities/user.dart';
 
-class LoginEntity {
+class AuthSuccessEntity {
   late User user;
   late String token;
 
-  LoginEntity({
+  AuthSuccessEntity({
     required this.user,
     required this.token,
   });

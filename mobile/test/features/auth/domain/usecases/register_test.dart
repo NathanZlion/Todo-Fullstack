@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/features/auth/domain/entities/Sucess.dart';
 import 'package:mobile/features/auth/domain/entities/user.dart';
-import 'package:mobile/features/auth/domain/usecases/login.dart';
-import 'package:mockito/mockito.dart';
 import 'package:mobile/features/auth/domain/repositories/auth_repository.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:mobile/features/auth/domain/usecases/register.dart';
 import 'package:mockito/annotations.dart';
-import 'login_test.mocks.dart';
+import 'package:mockito/mockito.dart';
+
+import 'register_test.mocks.dart';
 
 @GenerateMocks([AuthRepository])
 void main() {
@@ -17,31 +18,30 @@ void main() {
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGFkZDQ2NjAwNjYyN2M1N2UzZTExZGIiLCJpYXQiOjE2OTIyMTgzMzd9.AnMr7kzu3lyy-PfGj1JCA85F-Du4l1KCkGyhlyb9qmA";
 
   late MockAuthRepository mockAuthRepository;
-  late LoginUseCase useCase;
-  late AuthSuccessEntity loginResponse;
+  late RegisterUseCase useCase;
+  late AuthSuccessEntity registerResponse;
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    useCase = LoginUseCase(mockAuthRepository);
-    loginResponse = AuthSuccessEntity(
+    useCase = RegisterUseCase(mockAuthRepository);
+    registerResponse = AuthSuccessEntity(
       user: const User(userName: tUserName, email: tEmail),
       token: tToken,
     );
   });
-  test(
-      'Should call AuthRepository when LoginUseCase is called and return the result.',
-      () async {
+
+  test("Should call AuthRepository when login use case is called", () async {
     // arrange
-    when(mockAuthRepository.login(any, any))
-        .thenAnswer((_) async => Right(loginResponse));
+    when(mockAuthRepository.register(any, any, any))
+        .thenAnswer((_) async => Right(registerResponse));
 
-    //act
-    final result =
-        await useCase(const Params(email: tEmail, password: tPassword));
+    // act
+    var result = await useCase(
+        const Params(userName: tUserName, email: tEmail, password: tPassword));
 
-    //assert
-    expect(result, Right(loginResponse));
-    verify(mockAuthRepository.login(tEmail, tPassword)).called(1);
-    verifyNoMoreInteractions(mockAuthRepository);
+    // assert
+    expect(result, equals(Right(registerResponse)));
+    verify(mockAuthRepository.register(tUserName, tEmail, tPassword)).called(1);
+    verifyNoMoreInteractions(mockAuthRepository);   
   });
 }
