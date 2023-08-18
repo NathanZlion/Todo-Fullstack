@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:mobile/core/error/failures.dart';
 
 import 'package:dartz/dartz.dart';
