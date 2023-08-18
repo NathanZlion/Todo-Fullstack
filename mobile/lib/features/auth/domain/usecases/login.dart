@@ -4,7 +4,6 @@ import 'package:mobile/core/error/failures.dart';
 import 'package:mobile/core/usecases/usecase.dart';
 import 'package:mobile/features/auth/domain/entities/sucess.dart';
 import 'package:mobile/features/auth/domain/repositories/auth_repository.dart';
-import 'package:meta/meta.dart' show required;
 
 class LoginUseCase implements UseCase<AuthSuccessEntity, Params> {
   final AuthRepository repository;

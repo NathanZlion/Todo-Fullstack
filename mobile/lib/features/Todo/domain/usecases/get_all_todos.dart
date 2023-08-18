@@ -18,9 +18,3 @@ class GetTodos implements UseCase<List<TodoEntity>, NoParam> {
   }
 }
 
-class NoParam extends Equatable {
-  const NoParam();
-
-  @override
-  List<Object?> get props => [];
-}
