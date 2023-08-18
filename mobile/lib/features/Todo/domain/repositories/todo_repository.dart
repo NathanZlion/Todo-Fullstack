@@ -10,7 +10,11 @@ abstract class TodoRepository {
     bool? completed,
   );
   Future<Either<Failure, List<TodoEntity>>> getAllTodos();
-  Future<Either<Failure, TodoEntity>> updateTodo();
+  Future<Either<Failure, TodoEntity>> updateTodo(
+    String? id,
+    String? title,
+    bool? completed,
+  );
   Future<Either<Failure, TodoEntity>> deleteTodo(
     String? id,
     String? title,
