@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mobile/core/error/failures.dart' as _i5;
-import 'package:mobile/features/auth/domain/entities/Sucess.dart' as _i6;
+import 'package:mobile/features/auth/domain/entities/sucess.dart' as _i6;
 import 'package:mobile/features/auth/domain/repositories/auth_repository.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;

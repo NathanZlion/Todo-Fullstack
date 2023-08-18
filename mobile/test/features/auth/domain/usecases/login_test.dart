@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:mobile/features/auth/domain/entities/Sucess.dart';
+import 'package:mobile/features/auth/domain/entities/sucess.dart';
 import 'package:mobile/features/auth/domain/entities/user.dart';
 import 'package:mobile/features/auth/domain/usecases/login.dart';
 import 'package:mockito/mockito.dart';
