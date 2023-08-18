@@ -1,7 +1,7 @@
-import 'package:mobile/features/auth/domain/entities/user.dart';
+import 'user.dart';
 
 class AuthSuccessEntity {
-  late User user;
+  late UserEntity user;
   late String token;
 
   AuthSuccessEntity({
