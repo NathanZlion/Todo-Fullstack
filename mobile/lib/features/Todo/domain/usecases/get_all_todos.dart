@@ -7,28 +7,20 @@ import 'package:mobile/features/todo/domain/repositories/todo_repository.dart';
 
 import '../../../../core/usecases/usecase.dart';
 
-class DeleteTodo implements UseCase<TodoEntity, Param> {
+class GetTodos implements UseCase<List<TodoEntity>, NoParam> {
   final TodoRepository repository;
 
-  DeleteTodo(this.repository);
+  GetTodos(this.repository);
 
   @override
-  Future<Either<Failure, TodoEntity>> call(param) async {
-    return await repository.deleteTodo(param.id, param.title, param.completed);
+  Future<Either<Failure, List<TodoEntity>>> call(param) async {
+    return await repository.getAllTodos();
   }
 }
 
-class Param extends Equatable {
-  final String id;
-  final String title;
-  final bool completed;
-
-  const Param({
-    required this.id,
-    required this.title,
-    required this.completed,
-  });
+class NoParam extends Equatable {
+  const NoParam();
 
   @override
-  List<Object?> get props => [id, title, completed];
+  List<Object?> get props => [];
 }
