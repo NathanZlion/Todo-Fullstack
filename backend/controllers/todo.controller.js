@@ -9,14 +9,13 @@ import userModel from "../models/user.model.js";
 export default class todoControllers {
     static async createTodo(req, res) {
         try {
-            const { title, description, importance } = req.body;
+            const { title, description, completed } = req.body;
             const user = res.locals.user;
-
             if (!title) {
                 return res.status(400).json({ message: "Title is required" });
             }
 
-            const newTodo = new todoModel({ title, description, importance, user: user._id });
+            const newTodo = new todoModel({ title, description, completed, user: user._id });
             await newTodo.save();
 
             res.status(200).json({ message: "Todo created successfully", newTodo });
@@ -63,7 +62,7 @@ export default class todoControllers {
         try {
             const user = res.locals.user;
             const { id } = req.params;
-            const { title, description, importance } = req.body;
+            const { title, description, completed } = req.body;
             const todo = await todoModel.findById(id);
 
             if (!todo) {
@@ -76,7 +75,7 @@ export default class todoControllers {
 
             todo.title = title;
             todo.description = description;
-            todo.importance = importance;
+            todo.completed = completed;
             await todo.save();
 
             res.status(200).json({ message: "Todo updated successfully", todo });
