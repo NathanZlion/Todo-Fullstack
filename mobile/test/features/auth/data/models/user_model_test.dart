@@ -11,11 +11,10 @@ void main() {
       UserModel(userName: "test username", email: 'testemail@email.com');
   test('Should be a subclass of User Entity', () {
     // assert
-
     expect(tUserModel, isA<UserEntity>());
   });
 
-  test('Should return a valid `UserModel` when toJson is called', () {
+  test('Should return a valid `UserModel` when fromJson is called', () {
     // arrange
     final userJson = jsonDecode(jsonReader("user.json"));
 
