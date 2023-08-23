@@ -1,20 +1,24 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/core/Network/network_info.dart';
+import 'package:mobile/core/error/failures.dart';
 import 'package:mobile/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:mobile/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:mobile/features/auth/domain/entities/success.dart';
 import 'package:mobile/features/auth/domain/entities/user.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
+import 'package:mobile/core/error/exceptions.dart';
 import 'auth_repository_impl_test.mocks.dart';
 
-@GenerateMocks([AuthRemoteDataSource, NetworkInfo])
+@GenerateMocks([NetworkInfo])
+@GenerateNiceMocks([MockSpec<AuthRemoteDataSource>()])
 void main() {
   late AuthRepositoryImpl repository;
   late MockAuthRemoteDataSource mockAuthRemoteDataSource;
   late MockNetworkInfo mockNetworkInfo;
+
+  var tExceptionMessage = 'Server Error';
 
   setUp(() {
     mockNetworkInfo = MockNetworkInfo();
@@ -29,8 +33,9 @@ void main() {
     const String tEmail = "testEmail";
     const String tUserName = "Nath";
     final AuthSuccessEntity tAuthSuccesEntity = AuthSuccessEntity(
-        user: const UserEntity(email: tEmail, userName: tUserName),
-        token: "token");
+      user: const UserEntity(email: tEmail, userName: tUserName),
+      token: "token",
+    );
     const String tPassword = "test password";
     test("Should check for connection when login is called on repository",
         () async {
@@ -59,13 +64,49 @@ void main() {
         verifyNoMoreInteractions(mockAuthRemoteDataSource);
         expect(result, Right(tAuthSuccesEntity));
       });
-    });
 
-    
+      test("Should return a ServerFailure on server exception", () async {
+        //  arrange
+        when(mockAuthRemoteDataSource.login(any, any))
+            .thenThrow(ServerException(tExceptionMessage));
+
+        // act
+        var result = await repository.login(tEmail, tPassword);
+
+        //assert
+        expect(result, Left(ServerFailure()));
+      });
+
+      test("Should return a Authentication Failure on Authentication exception",
+          () async {
+        //  arrange
+        when(mockAuthRemoteDataSource.login(any, any))
+            .thenThrow(AuthenticationException(tExceptionMessage));
+
+        // act
+        var result = await repository.login(tEmail, tPassword);
+
+        //assert
+        expect(result, Left(AuthenticationFailure()));
+      });
+    });
 
     group("Device is Offline", () {
       setUp(() {
         when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+      });
+
+      test("Should return a Network failure when the device is offline",
+          () async {
+        // arrange
+        when(mockAuthRemoteDataSource.login(any, any))
+            .thenThrow(AuthenticationException(tExceptionMessage));
+
+        // act
+        var result = await repository.login(tEmail, tPassword);
+
+        // assert
+        expect(result, Left(NetworkFailure()));
       });
     });
   });
