@@ -4,10 +4,10 @@ class ServerException implements Exception {
   ServerException(this.message);
 }
 
-class AuthorizationException implements Exception {
+class AuthenticationException implements Exception {
   final String message;
 
-  const AuthorizationException(this.message);
+  const AuthenticationException(this.message);
 }
 
 class NetworkException implements Exception {
