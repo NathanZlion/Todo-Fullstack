@@ -43,6 +43,19 @@ class AuthRepositoryImpl implements AuthRepository {
     String? email,
     String? password,
   ) async {
-    throw UnimplementedError();
+    final isConnected = await networkInfo.isConnected;
+    if (!isConnected) {
+      return Left(NetworkFailure());
+    }
+
+    try {
+      return Right(await remoteDataSource.register(userName, email, password));
+    } on ServerException {
+      return Left(await Future.value(ServerFailure()));
+    } on AuthenticationException {
+      return Left(await Future.value(AuthenticationFailure()));
+    } on Exception {
+      return Left(ServerFailure());
+    }
   }
 }
