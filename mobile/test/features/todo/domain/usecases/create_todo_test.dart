@@ -28,16 +28,16 @@ void main() {
 
   test("Create Todo Should call the Todo repository Create", () async {
     // arrange
-    when(mockTodoRepository.createTodo(any, any, any))
+    when(mockTodoRepository.createTodo(any, any))
         .thenAnswer((_) async => Right(tTodoEntity));
 
     // act
     var result = await useCase(
-        const Param(title: tTitle, completed: tCompleted, id: tId));
+        const Param(title: tTitle, completed: tCompleted));
 
     // assert
     expect(result, Right(tTodoEntity));
-    verify(mockTodoRepository.createTodo(tId, tTitle, tCompleted));
+    verify(mockTodoRepository.createTodo(tTitle, tCompleted));
     verifyNoMoreInteractions(mockTodoRepository);
   });
 }

@@ -27,16 +27,15 @@ void main() {
 
   test("Delete Todo Should call the Todo repository Delete", () async {
     // arrange
-    when(mockTodoRepository.deleteTodo(any, any, any))
+    when(mockTodoRepository.deleteTodo(any))
         .thenAnswer((_) async => Right(tTodoEntity));
 
     // act
-    var result = await useCase(
-        const Param(title: tTitle, completed: tCompleted, id: tId));
+    var result = await useCase(const Param(id: tId));
 
     // assert
     expect(result, Right(tTodoEntity));
-    verify(mockTodoRepository.deleteTodo(tId, tTitle, tCompleted));
+    verify(mockTodoRepository.deleteTodo(tId));
     verifyNoMoreInteractions(mockTodoRepository);
   });
 }

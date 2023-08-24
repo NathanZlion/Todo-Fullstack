@@ -43,7 +43,6 @@ class MockTodoRepository extends _i1.Mock implements _i3.TodoRepository {
 
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.TodoEntity>> createTodo(
-    String? id,
     String? title,
     bool? completed,
   ) =>
@@ -51,7 +50,6 @@ class MockTodoRepository extends _i1.Mock implements _i3.TodoRepository {
         Invocation.method(
           #createTodo,
           [
-            id,
             title,
             completed,
           ],
@@ -62,7 +60,6 @@ class MockTodoRepository extends _i1.Mock implements _i3.TodoRepository {
           Invocation.method(
             #createTodo,
             [
-              id,
               title,
               completed,
             ],
@@ -115,30 +112,18 @@ class MockTodoRepository extends _i1.Mock implements _i3.TodoRepository {
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, _i6.TodoEntity>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.TodoEntity>> deleteTodo(
-    String? id,
-    String? title,
-    bool? completed,
-  ) =>
+  _i4.Future<_i2.Either<_i5.Failure, _i6.TodoEntity>> deleteTodo(String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #deleteTodo,
-          [
-            id,
-            title,
-            completed,
-          ],
+          [id],
         ),
         returnValue: _i4.Future<_i2.Either<_i5.Failure, _i6.TodoEntity>>.value(
             _FakeEither_0<_i5.Failure, _i6.TodoEntity>(
           this,
           Invocation.method(
             #deleteTodo,
-            [
-              id,
-              title,
-              completed,
-            ],
+            [id],
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, _i6.TodoEntity>>);
