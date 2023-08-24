@@ -5,7 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:mobile/core/Network/network_info.dart' as _i3;
+import 'package:mobile/core/network/network_info.dart' as _i3;
 import 'package:mobile/features/auth/data/datasources/auth_remote_datasource.dart'
     as _i5;
 import 'package:mobile/features/auth/domain/entities/success.dart' as _i2;

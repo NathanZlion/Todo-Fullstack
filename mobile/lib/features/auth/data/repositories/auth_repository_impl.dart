@@ -1,4 +1,4 @@
-import 'package:mobile/core/Network/network_info.dart';
+import 'package:mobile/core/network/network_info.dart';
 import 'package:mobile/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:mobile/features/auth/domain/entities/success.dart';
 import 'package:mobile/core/error/failures.dart';

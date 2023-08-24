@@ -5,8 +5,10 @@ class AuthSuccessModel extends AuthSuccessEntity {
   final UserModel user;
   final String token;
 
-  AuthSuccessModel({required this.user, required this.token})
-      : super(user: user, token: token);
+  AuthSuccessModel({
+    required this.user,
+    required this.token,
+  }) : super(user: user, token: token);
 
   factory AuthSuccessModel.fromJson(Map<String, dynamic> json) {
     return AuthSuccessModel(

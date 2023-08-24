@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile/core/Network/network_info.dart';
+import 'package:mobile/core/network/network_info.dart';
 import 'package:mobile/core/error/failures.dart';
 import 'package:mobile/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:mobile/features/auth/data/repositories/auth_repository_impl.dart';
@@ -18,7 +18,7 @@ void main() {
   late MockAuthRemoteDataSource mockAuthRemoteDataSource;
   late MockNetworkInfo mockNetworkInfo;
 
-  var tExceptionMessage = 'Server Error';
+  var tExceptionMessage = 'Test Exception Message';
 
   setUp(() {
     mockNetworkInfo = MockNetworkInfo();
@@ -142,7 +142,8 @@ void main() {
 
         final result = await repository.register(tUserName, tEmail, tPassword);
 
-        verify(mockAuthRemoteDataSource.register(tUserName, tEmail, tPassword)).called(1);
+        verify(mockAuthRemoteDataSource.register(tUserName, tEmail, tPassword))
+            .called(1);
         verifyNoMoreInteractions(mockAuthRemoteDataSource);
         expect(result, Right(tAuthSuccesEntity));
       });
