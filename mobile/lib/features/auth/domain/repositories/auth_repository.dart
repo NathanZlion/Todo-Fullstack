@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:mobile/features/auth/domain/entities/Sucess.dart';
+import 'package:mobile/features/auth/domain/entities/success.dart';
 
 import '../../../../core/error/failures.dart';
 

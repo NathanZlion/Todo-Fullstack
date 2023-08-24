@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile/features/auth/domain/entities/Sucess.dart';
+import 'package:mobile/features/auth/domain/entities/success.dart';
 import 'package:mobile/features/auth/domain/entities/user.dart';
 import 'package:mobile/features/auth/domain/repositories/auth_repository.dart';
 import 'package:mobile/features/auth/domain/usecases/register.dart';
@@ -25,7 +25,7 @@ void main() {
     mockAuthRepository = MockAuthRepository();
     useCase = RegisterUseCase(mockAuthRepository);
     registerResponse = AuthSuccessEntity(
-      user: const User(userName: tUserName, email: tEmail),
+      user: const UserEntity(userName: tUserName, email: tEmail),
       token: tToken,
     );
   });

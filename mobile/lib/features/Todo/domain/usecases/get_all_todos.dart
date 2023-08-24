@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:mobile/core/error/failures.dart';
 
 import 'package:dartz/dartz.dart';
@@ -18,9 +17,3 @@ class GetTodos implements UseCase<List<TodoEntity>, NoParam> {
   }
 }
 
-class NoParam extends Equatable {
-  const NoParam();
-
-  @override
-  List<Object?> get props => [];
-}
