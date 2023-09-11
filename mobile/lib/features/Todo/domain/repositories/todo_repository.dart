@@ -1,23 +1,20 @@
 import 'package:dartz/dartz.dart';
-import 'package:mobile/core/error/failures.dart';
-
+import '../../../../core/error/failures.dart';
 import '../entities/todo.dart';
 
 abstract class TodoRepository {
-  Future<Either<Failure, TodoEntity>> createTodo(
-    String? id,
-    String? title,
-    bool? completed,
-  );
   Future<Either<Failure, List<TodoEntity>>> getAllTodos();
+
+  Future<Either<Failure, TodoEntity>> createTodo(
+    String title,
+    bool? completed,
+  );
+
   Future<Either<Failure, TodoEntity>> updateTodo(
-    String? id,
+    String id,
     String? title,
     bool? completed,
   );
-  Future<Either<Failure, TodoEntity>> deleteTodo(
-    String? id,
-    String? title,
-    bool? completed,
-  );
+
+  Future<Either<Failure, TodoEntity>> deleteTodo(String id);
 }

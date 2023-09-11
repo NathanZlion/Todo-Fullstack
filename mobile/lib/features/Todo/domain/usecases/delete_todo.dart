@@ -14,21 +14,17 @@ class DeleteTodo implements UseCase<TodoEntity, Param> {
 
   @override
   Future<Either<Failure, TodoEntity>> call(param) async {
-    return await repository.deleteTodo(param.id, param.title, param.completed);
+    return await repository.deleteTodo(param.id);
   }
 }
 
 class Param extends Equatable {
   final String id;
-  final String title;
-  final bool completed;
 
   const Param({
     required this.id,
-    required this.title,
-    required this.completed,
   });
 
   @override
-  List<Object?> get props => [id, title, completed];
+  List<Object?> get props => [id];
 }

@@ -12,17 +12,16 @@ class CreateTodo implements UseCase<TodoEntity, Param> {
 
   @override
   Future<Either<Failure, TodoEntity>> call(param) async {
-    return await repository.createTodo(param.id, param.title, param.completed);
+    return await repository.createTodo(param.title, param.completed);
   }
 }
 
 class Param extends Equatable {
   final String title;
   final bool completed;
-  final String id;
 
-  const Param({required this.title, required this.completed, required this.id});
+  const Param({required this.title, required this.completed});
 
   @override
-  List<Object?> get props => [title, completed, id];
+  List<Object?> get props => [title, completed];
 }
