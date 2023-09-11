@@ -1,6 +1,5 @@
 
 import todoModel from "../models/todo.model.js";
-import userModel from "../models/user.model.js";
 
 /**
  * 
@@ -9,17 +8,17 @@ import userModel from "../models/user.model.js";
 export default class todoControllers {
     static async createTodo(req, res) {
         try {
-            const { title, description, importance } = req.body;
+            const { title,  importance } = req.body;
             const user = res.locals.user;
 
             if (!title) {
                 return res.status(400).json({ message: "Title is required" });
             }
 
-            const newTodo = new todoModel({ title, description, importance, user: user._id });
+            const newTodo = new todoModel({ title, importance, user: user._id });
             await newTodo.save();
 
-            res.status(200).json({ message: "Todo created successfully", newTodo });
+            res.status(200).json({ message: "Todo created successfully", todo: newTodo });
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "Something went wrong while creating todo." });
@@ -49,7 +48,7 @@ export default class todoControllers {
             }
 
             if (todo.user.toString() !== user._id.toString()) {
-                return res.status(401).json({ message: "Unauthorized" });
+                return res.status(400).json({ message: "Unauthorized" });
             }
 
             res.status(200).json({ message: "Todo fetched successfully", todo });
@@ -63,7 +62,7 @@ export default class todoControllers {
         try {
             const user = res.locals.user;
             const { id } = req.params;
-            const { title, description, importance } = req.body;
+            const { title, completed } = req.body;
             const todo = await todoModel.findById(id);
 
             if (!todo) {
@@ -71,12 +70,11 @@ export default class todoControllers {
             }
 
             if (todo.user.toString() !== user._id.toString()) {
-                return res.status(401).json({ message: "Unauthorized" });
+                return res.status(400).json({ message: "Unauthorized" });
             }
 
             todo.title = title;
-            todo.description = description;
-            todo.importance = importance;
+            todo.completed = completed;
             await todo.save();
 
             res.status(200).json({ message: "Todo updated successfully", todo });
@@ -97,12 +95,12 @@ export default class todoControllers {
             }
 
             if (todo.user.toString() !== user._id.toString()) {
-                return res.status(401).json({ message: "Unauthorized" });
+                return res.status(400).json({ message: "Unauthorized" });
             }
 
             await todoModel.findByIdAndDelete(id);
 
-            res.status(200).json({ message: "Todo deleted successfully" });
+            res.status(200).json({ message: "Todo deleted successfully", todo: todo });
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "Something went wrong while deleting todo." });
