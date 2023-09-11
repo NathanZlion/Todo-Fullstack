@@ -91,8 +91,13 @@ export class userControllers {
             // sign a token and send it to the user
             const token = jwt.sign({ _id: existingUser._id }, process.env.JWT_SECRET);
 
-            res.status(200).json({ token, user: { userName: existingUser.userName, email: existingUser.email } });
-
+            res.status(200)
+                .json({
+                    token, user: {
+                        userName: existingUser.userName,
+                        email: existingUser.email,
+                    }
+                });
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "Something went wrong while logging in." });

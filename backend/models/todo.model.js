@@ -13,11 +13,6 @@ const Todo = new mongoose.Schema(
             type: String,
             required: [true, "Title is required."]
         },
-        description: {
-            type: String,
-            required: false,
-            default: "",
-        },
         completed: {
             type: Boolean,
             required: false,
