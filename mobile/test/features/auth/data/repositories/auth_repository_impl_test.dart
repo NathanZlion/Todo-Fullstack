@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile/core/network/network_info.dart';
 import 'package:mobile/core/error/failures.dart';
+import 'package:mobile/features/auth/data/datasources/auth_local_datasource.dart';
 import 'package:mobile/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:mobile/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:mobile/features/auth/domain/entities/success.dart';
@@ -12,20 +13,24 @@ import 'package:mobile/core/error/exceptions.dart';
 import 'auth_repository_impl_test.mocks.dart';
 
 @GenerateMocks([NetworkInfo])
-@GenerateNiceMocks([MockSpec<AuthRemoteDataSource>()])
+@GenerateNiceMocks(
+    [MockSpec<AuthRemoteDataSource>(), MockSpec<AuthLocalDataSource>()])
 void main() {
   late AuthRepositoryImpl repository;
   late MockAuthRemoteDataSource mockAuthRemoteDataSource;
   late MockNetworkInfo mockNetworkInfo;
+  late MockAuthLocalDataSource mockAuthLocalDataSource;
 
   var tExceptionMessage = 'Test Exception Message';
 
   setUp(() {
     mockNetworkInfo = MockNetworkInfo();
     mockAuthRemoteDataSource = MockAuthRemoteDataSource();
+    mockAuthLocalDataSource = MockAuthLocalDataSource();
     repository = AuthRepositoryImpl(
       networkInfo: mockNetworkInfo,
       remoteDataSource: mockAuthRemoteDataSource,
+      localDataSource: mockAuthLocalDataSource,
     );
   });
 

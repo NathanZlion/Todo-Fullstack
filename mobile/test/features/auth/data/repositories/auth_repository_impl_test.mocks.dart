@@ -6,6 +6,8 @@
 import 'dart:async' as _i4;
 
 import 'package:mobile/core/network/network_info.dart' as _i3;
+import 'package:mobile/features/auth/data/datasources/auth_local_datasource.dart'
+    as _i6;
 import 'package:mobile/features/auth/data/datasources/auth_remote_datasource.dart'
     as _i5;
 import 'package:mobile/features/auth/domain/entities/success.dart' as _i2;
@@ -129,4 +131,20 @@ class MockAuthRemoteDataSource extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.AuthSuccessEntity>);
+}
+
+/// A class which mocks [AuthLocalDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthLocalDataSource extends _i1.Mock
+    implements _i6.AuthLocalDataSource {
+  @override
+  _i4.Future<void> logout() => (super.noSuchMethod(
+        Invocation.method(
+          #logout,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
