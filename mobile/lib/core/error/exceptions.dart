@@ -15,3 +15,5 @@ class NetworkException implements Exception {
 
   const NetworkException(this.message);
 }
+
+class CacheException implements Exception {}
