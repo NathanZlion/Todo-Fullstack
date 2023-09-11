@@ -75,7 +75,7 @@ _patch_ `http://127.0.0.1:5000/api/todo/:id`
 ```json
 {
     "title": "third todo",
-    "description": "I have now added some description"
+    "completed": "<true | false>"
 }
 ```
 
